@@ -13,6 +13,22 @@ import org.springframework.stereotype.Repository;
 
 import pe.edu.tecsup.springbootapp.entities.Categoria;
 
+//Mapper
+class CategoriaRowMapper implements RowMapper<Categoria> {
+
+	@Override
+	public Categoria mapRow(ResultSet rs, int rowNum) throws SQLException {
+		Categoria categoria = new Categoria();
+		
+		categoria.setId(rs.getLong("id"));
+		categoria.setNombre(rs.getString("nombre"));
+		categoria.setOrden(rs.getInt("orden"));
+		
+		return categoria;
+	}
+	
+}
+
 @Repository
 public class CategoriaRepositoryImpl implements CategoriaRepository {
 
@@ -28,33 +44,11 @@ public class CategoriaRepositoryImpl implements CategoriaRepository {
 		
 		String sql = "select * from categorias";
 		
-		List<Categoria> categorias = jdbcTemplate.query(sql, new RowMapper<Categoria>() {
-			@Override
-			public Categoria mapRow(ResultSet rs, int rowNum) 
-					throws SQLException {
-				
-				Categoria categoria = new Categoria();
-				
-				categoria.setId(rs.getLong("id"));
-				categoria.setNombre(rs.getString("nombre"));
-				categoria.setOrden(rs.getInt("orden"));
-				
-				return categoria;
-			}
-		});
-		
+		List<Categoria> categorias 
+			= jdbcTemplate.query(sql, new CategoriaRowMapper());
+
 		return categorias;
 
-		
-		/*
-		// Dummy 
-		List<Categoria> categorias = new ArrayList<>();
-		categorias.add(new Categoria());
-		categorias.add(new Categoria());
-		categorias.add(new Categoria());
-		
-		return categorias;
-		 */
 	}
 
 }
