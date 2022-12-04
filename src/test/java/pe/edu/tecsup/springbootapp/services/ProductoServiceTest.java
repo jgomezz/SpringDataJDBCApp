@@ -86,18 +86,30 @@ public class ProductoServiceTest {
 	@Test
 	public void testActualizar() throws Exception {
 		
-		// TEST DRIVEN  
-		
 		// Actualizar el nombre del producto
-		Long id = 35L; // Relacionado con tus datos de pruebas
-		String nombreACambiar = "Kingstone" ;
-		productoService.actualizar(id, nombreACambiar);
+		Long id = 1L; // Relacionado con tus datos de pruebas
+		String NOMBRE_ORIGINAL = "Kingstone" ;
+		String NOMBRE_A_CAMBIAR = "Kingstone Cambiado" ;
+		Producto prod = null;
+		
+		// Actualizar
+		productoService.actualizar(id, NOMBRE_A_CAMBIAR);
 
 		// Buscar el producto
-		Producto prod = productoService.buscarPorId(id);
+		prod = productoService.buscarPorId(id);
 		
 		// Verificar que el nombre ha sido cambiado 
-		// TODO assertThat(prod.getNombre(), is(nombreACambiar));
+		assertThat(prod.getNombre(), is(NOMBRE_A_CAMBIAR));
+		
+		// Actualizar
+		productoService.actualizar(id, NOMBRE_ORIGINAL);
+
+		// Buscar el producto
+		prod = productoService.buscarPorId(id);
+		
+		// Verificar que el nombre ha sido cambiado 
+		assertThat(prod.getNombre(), is(NOMBRE_ORIGINAL));
+
 
 	}
 }

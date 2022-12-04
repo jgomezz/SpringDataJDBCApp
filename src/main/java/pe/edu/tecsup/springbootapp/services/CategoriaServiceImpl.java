@@ -15,9 +15,14 @@ public class CategoriaServiceImpl implements CategoriaService {
 
 	private static Logger log = LoggerFactory.getLogger(CategoriaServiceImpl.class);
 
-	@Autowired
-	private CategoriaRepository categoriaRepository;
+//	@Autowired
+//	private CategoriaRepository categoriaRepository;
 
+	private CategoriaRepository categoriaRepository;
+	
+	public CategoriaServiceImpl(CategoriaRepository categoriaRepository) {
+		this.categoriaRepository = categoriaRepository;
+	}
 	
 	@Override
 	public List<Categoria> listar() throws Exception {

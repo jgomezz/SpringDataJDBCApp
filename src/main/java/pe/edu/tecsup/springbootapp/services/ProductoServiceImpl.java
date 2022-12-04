@@ -15,9 +15,16 @@ public class ProductoServiceImpl implements ProductoService {
 
 	private static Logger log = LoggerFactory.getLogger(ProductoServiceImpl.class);
 
-	@Autowired
+//	@Autowired
+//	ProductoRepository productoRepository;
+
 	ProductoRepository productoRepository;
 
+	public ProductoServiceImpl(ProductoRepository productoRepository) {
+		this.productoRepository = productoRepository;
+	}
+	
+	
 	@Override
 	public List<Producto> listar() throws Exception {
 		log.info("call listar()");

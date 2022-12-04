@@ -56,9 +56,17 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 
 	private static Logger log = LoggerFactory.getLogger(ProductoRepositoryImpl.class);
 
-	@Autowired
+//	@Autowired
+//	JdbcTemplate jdbcTemplate;
+
 	JdbcTemplate jdbcTemplate;
 
+    public ProductoRepositoryImpl(JdbcTemplate jdbcTemplate) {
+    	this.jdbcTemplate = jdbcTemplate;
+	}
+	
+	
+	
 	// jdbcTemplate.query
 	@Override
 	public List<Producto> listar() throws Exception {
@@ -103,9 +111,17 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 
 	@Override
 	public Producto buscarPorId(Long id) throws Exception {
-		// TODO : Developer jgomez 
-		//  jdbcTemplate.queryForObject  
-		return null;
+
+		String sql = "SELECT p.id, p.categorias_id, c.nombre AS categorias_nombre, p.nombre, "
+				+ " p.descripcion, p.precio, p.stock, p.imagen_nombre, p.imagen_tipo, p.imagen_tamanio, p.creado, "
+				+ " p.estado " 
+				+ "FROM productos p " 
+				+ "INNER JOIN categorias c ON c.id=p.categorias_id "
+				+ "WHERE estado=1 AND p.id = ? ";
+		
+		Object[] parameter = new Object[] {id}; 
+		Producto prod = jdbcTemplate.queryForObject(sql, new ProductoRowMapper(), parameter) ;
+		return prod;
 	}
 	
 

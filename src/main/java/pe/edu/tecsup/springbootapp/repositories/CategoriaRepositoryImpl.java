@@ -34,9 +34,18 @@ public class CategoriaRepositoryImpl implements CategoriaRepository {
 
 	private static Logger log = LoggerFactory.getLogger(CategoriaRepositoryImpl.class);
 	
-	@Autowired
+//	@Autowired
+//	private JdbcTemplate jdbcTemplate;
+
 	private JdbcTemplate jdbcTemplate;
 
+	public CategoriaRepositoryImpl(JdbcTemplate jdbcTemplate) {
+		
+		this.jdbcTemplate = jdbcTemplate;
+		
+	}
+	
+	
 	@Override
 	public List<Categoria> listar() throws Exception {
 		
