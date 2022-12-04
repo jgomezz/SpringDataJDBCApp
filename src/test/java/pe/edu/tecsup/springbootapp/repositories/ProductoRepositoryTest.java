@@ -59,6 +59,7 @@ class ProductoRepositoryTest {
 		nuevoProducto.setDescripcion("AMD X10");
 		nuevoProducto.setPrecio(280.0);
 		nuevoProducto.setStock(6);
+		nuevoProducto.setEstado(1);
 
 		try {
 

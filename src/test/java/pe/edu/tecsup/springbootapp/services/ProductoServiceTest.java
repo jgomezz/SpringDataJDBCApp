@@ -56,6 +56,8 @@ public class ProductoServiceTest {
 		producto.setDescripcion("AMD X10");
 		producto.setPrecio(280.0);
 		producto.setStock(6);
+		producto.setEstado(1);
+
 		productoService.registrar(producto);	
 		
 		productos = productoService.listar();

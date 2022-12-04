@@ -131,8 +131,8 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 		
 		log.info("call registrar(producto: " + producto + ")");
 		
-		String sql = "INSERT INTO productos (categorias_id, nombre, descripcion, precio, stock, imagen_nombre, imagen_tipo, imagen_tamanio) " +
-		             "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO productos (categorias_id, nombre, descripcion, precio, stock, estado, imagen_nombre, imagen_tipo, imagen_tamanio) " +
+		             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		jdbcTemplate.update(sql,
 							producto.getCategorias_id(),
@@ -140,6 +140,7 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 							producto.getDescripcion(),
 							producto.getPrecio(),
 							producto.getStock(),
+							producto.getEstado(),
 							producto.getImagen_nombre(),
 							producto.getImagen_tipo(),
 							producto.getImagen_tamanio());
