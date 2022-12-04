@@ -126,7 +126,13 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 		return productos;
 	}
 	
-	
+
+	@Override
+	public Producto buscarPorId(Long id) throws Exception {
+		// TODO : Developer jgomez 
+		//  jdbcTemplate.queryForObject  
+		return null;
+	}
 	
 
 	// jdbcTemplate.update
@@ -166,5 +172,8 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 							nombreProducto,
 							id);
 	}
+
+
+
 
 }

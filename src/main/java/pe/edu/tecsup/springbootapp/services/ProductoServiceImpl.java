@@ -27,9 +27,15 @@ public class ProductoServiceImpl implements ProductoService {
 	@Override
 	public List<Producto> buscarPorNombre(String nombre) 
 			throws Exception {
-		// TODO Auto-generated method stub
 		log.info("call buscarPorNombre()");
 		return productoRepository.buscarPorNombre(nombre);
+	}
+
+	@Override
+	public Producto buscarPorId(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		log.info("call buscarPorId()");
+		return productoRepository.buscarPorId(id);
 	}
 
 	
@@ -51,6 +57,7 @@ public class ProductoServiceImpl implements ProductoService {
 		productoRepository.actualizar(id, nombreProducto);
 		
 	}
+
 
 
 }

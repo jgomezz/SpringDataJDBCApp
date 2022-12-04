@@ -16,4 +16,6 @@ public interface ProductoService {
 	
 	void actualizar(Long id, String nombreProducto) throws Exception;
 
+	Producto buscarPorId(Long id) throws Exception;
+
 }

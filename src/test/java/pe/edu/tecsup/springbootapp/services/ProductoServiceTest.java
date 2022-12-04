@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import pe.edu.tecsup.springbootapp.entities.Categoria;
 import pe.edu.tecsup.springbootapp.entities.Producto;
 
 @SpringBootTest
@@ -83,29 +82,22 @@ public class ProductoServiceTest {
 		assertThat(totalAntes - totalDespues, is(1));
 	}
 	
-	@Test
-	public void testRegistar2() throws Exception {
-		
-		List<Producto> productos = productoService.listar();
-		int totalAntes = productos.size();
-		
-		Producto producto = new Producto();
-		producto.setCategorias_id(2L);
-		producto.setNombre("INTEL");
-		producto.setDescripcion("Core 9i ");
-		producto.setPrecio(280.0);
-		producto.setStock(12);
-		productoService.registrar(producto);	
-		
-		productos = productoService.listar();
-		int totalDespues = productos.size();
-		
-		assertThat(totalDespues - totalAntes, is(1));
-	}
 	
 	@Test
 	public void testActualizar() throws Exception {
-		// TO DO 
 		
+		// TEST DRIVEN  
+		
+		// Actualizar el nombre del producto
+		Long id = 35L; // Relacionado con tus datos de pruebas
+		String nombreACambiar = "Kingstone" ;
+		productoService.actualizar(id, nombreACambiar);
+
+		// Buscar el producto
+		Producto prod = productoService.buscarPorId(id);
+		
+		// Verificar que el nombre ha sido cambiado 
+		// TODO assertThat(prod.getNombre(), is(nombreACambiar));
+
 	}
 }

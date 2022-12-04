@@ -15,4 +15,6 @@ public interface ProductoRepository {
 	void eliminar(Long id) throws Exception;
 
 	void actualizar(Long id, String nombreProducto) throws Exception;
+
+	Producto buscarPorId(Long id) throws Exception;
 }
