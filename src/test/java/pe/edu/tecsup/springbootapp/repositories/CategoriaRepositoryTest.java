@@ -29,7 +29,7 @@ class CategoriaRepositoryTest {
 		
 		try {
 			
-			cats = categoriaRepository.listar();
+			cats = categoriaRepository.findAll();
 			
 			// foreach
 			for (Categoria item : cats) {

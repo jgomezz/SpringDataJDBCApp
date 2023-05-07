@@ -29,7 +29,7 @@ class ProductoRepositoryTest {
 
 		try {
 
-			prods = productoRepository.listar();
+			prods = productoRepository.findAll();
 
 			// foreach
 			for (Producto item : prods) {
@@ -63,12 +63,12 @@ class ProductoRepositoryTest {
 
 		try {
 
-			List<Producto> productos = productoRepository.listar();
+			List<Producto> productos = productoRepository.findAll();
 			int totalAntes = productos.size();
 
-			productoRepository.registrar(nuevoProducto);
+			productoRepository.save(nuevoProducto);
 
-			productos = productoRepository.listar();
+			productos = productoRepository.findAll();
 			int totalDespues = productos.size();
 
 			assertThat(totalDespues - totalAntes, is(1));
@@ -86,7 +86,7 @@ class ProductoRepositoryTest {
 		
 		try {
 		
-			List<Producto> productos = productoRepository.listar(); 
+			List<Producto> productos = productoRepository.findAll(); 
 			
 			int totalAntes = productos.size();
 			
@@ -96,10 +96,10 @@ class ProductoRepositoryTest {
 			
 			Producto ultimoProducto = productos.get(productos.size() - 1);
 			
-			productoRepository.eliminar(ultimoProducto.getId()); 
+			productoRepository.deleteById(ultimoProducto.getId()); 
 			
 			// Lee nuevamente
-			productos = productoRepository.listar();
+			productos = productoRepository.findAll();
 			
 			int totalDespues = productos.size();
 			

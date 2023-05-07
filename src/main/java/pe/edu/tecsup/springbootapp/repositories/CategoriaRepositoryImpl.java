@@ -47,7 +47,7 @@ public class CategoriaRepositoryImpl implements CategoriaRepository {
 	
 	
 	@Override
-	public List<Categoria> listar() throws Exception {
+	public List<Categoria> findAll() throws Exception {
 		
 		log.info("call listar()");
 		

@@ -28,40 +28,40 @@ public class ProductoServiceImpl implements ProductoService {
 	@Override
 	public List<Producto> listar() throws Exception {
 		log.info("call listar()");
-		return productoRepository.listar();
+		return productoRepository.findAll();
 	}
 
 	@Override
 	public List<Producto> buscarPorNombre(String nombre) 
 			throws Exception {
 		log.info("call buscarPorNombre()");
-		return productoRepository.buscarPorNombre(nombre);
+		return productoRepository.findByName(nombre);
 	}
 
 	@Override
 	public Producto buscarPorId(Long id) throws Exception {
 		// TODO Auto-generated method stub
 		log.info("call buscarPorId()");
-		return productoRepository.buscarPorId(id);
+		return productoRepository.findById(id);
 	}
 
 	
 	@Override
 	public void registrar(Producto producto) throws Exception {
 		log.info("call registrar(producto: " + producto + ")");
-		productoRepository.registrar(producto);
+		productoRepository.save(producto);
 	}
 
 	@Override
 	public void eliminar(Long id) throws Exception {
 		log.info("call eliminar(id: " + id + ")");
-		productoRepository.eliminar(id);
+		productoRepository.deleteById(id);
 	}
 
 	@Override
 	public void actualizar(Long id, String nombreProducto) throws Exception {
 		log.info("call actualizar(id: " + id + ")");
-		productoRepository.actualizar(id, nombreProducto);
+		productoRepository.update(id, nombreProducto);
 		
 	}
 

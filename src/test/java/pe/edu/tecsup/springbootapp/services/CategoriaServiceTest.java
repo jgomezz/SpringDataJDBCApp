@@ -1,7 +1,6 @@
 package pe.edu.tecsup.springbootapp.services;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
@@ -27,23 +26,15 @@ class CategoriaServiceTest {
 		
 		List<Categoria> cats = categoriaService.listar();
 		
-		log.info(">>>>" + cats.toString());
-		
-		assertThat(cats.isEmpty(), is(false));
-		//assertThat(cats.size(), is(3));
-
-	}
-	
-	@Test
-	void testDummy() throws Exception {
-		
-		List<Categoria> cats = categoriaService.listar();
+		log.info("cats.toString() " + cats.toString());
 
 		log.info("Print by foreach");
 		for(Categoria cat : cats) log.info(cat.toString());
 				
 		log.info("Print by stream");
 		cats.stream().forEach(item -> log.info(item.toString()));
+
+        assertEquals(false, cats.isEmpty());
 
 	}
 

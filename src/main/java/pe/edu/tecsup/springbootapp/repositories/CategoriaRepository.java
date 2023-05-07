@@ -6,6 +6,6 @@ import pe.edu.tecsup.springbootapp.entities.Categoria;
 
 public interface CategoriaRepository {
 
-	List<Categoria> listar() throws Exception;
+	List<Categoria> findAll() throws Exception;
 	
 }

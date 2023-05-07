@@ -29,7 +29,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 		
 		log.info("calling services ....!") ;
 		
-		return categoriaRepository.listar();
+		return categoriaRepository.findAll();
 		
 	}
 

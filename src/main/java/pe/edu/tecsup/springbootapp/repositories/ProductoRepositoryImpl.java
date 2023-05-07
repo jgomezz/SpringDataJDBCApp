@@ -69,7 +69,7 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 	
 	// jdbcTemplate.query
 	@Override
-	public List<Producto> listar() throws Exception {
+	public List<Producto> findAll() throws Exception {
 		log.info("call listar()");
 		String sql = "SELECT p.id, p.categorias_id, c.nombre AS categorias_nombre, p.nombre, "
 				+ " p.descripcion, p.precio, p.stock, p.imagen_nombre, p.imagen_tipo, p.imagen_tamanio, p.creado, "
@@ -89,7 +89,7 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 	
 	
 	@Override
-	public List<Producto> buscarPorNombre(String nombre) throws Exception {
+	public List<Producto> findByName(String nombre) throws Exception {
 		
 		log.info("call buscarPorNombre()");
 		
@@ -110,14 +110,13 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 	
 
 	@Override
-	public Producto buscarPorId(Long id) throws Exception {
+	public Producto findById(Long id) throws Exception {
 
-		String sql = "SELECT p.id, p.categorias_id, c.nombre AS categorias_nombre, p.nombre, "
-				+ " p.descripcion, p.precio, p.stock, p.imagen_nombre, p.imagen_tipo, p.imagen_tamanio, p.creado, "
-				+ " p.estado " 
-				+ "FROM productos p " 
-				+ "INNER JOIN categorias c ON c.id=p.categorias_id "
-				+ "WHERE estado=1 AND p.id = ? ";
+		String sql = "SELECT p.id, p.categorias_id, c.nombre AS categorias_nombre, p.nombre, p.estado,"
+				+ " p.descripcion, p.precio, p.stock, p.imagen_nombre, p.imagen_tipo, p.imagen_tamanio, p.creado "
+				+ " FROM productos p " 
+				+ " INNER JOIN categorias c ON c.id=p.categorias_id "
+				+ " WHERE estado=1 AND p.id = ? ";
 		
 		Object[] parameter = new Object[] {id}; 
 		Producto prod = jdbcTemplate.queryForObject(sql, new ProductoRowMapper(), parameter) ;
@@ -127,7 +126,7 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 
 	// jdbcTemplate.update
 	@Override
-	public void registrar(Producto producto) throws Exception {
+	public void save(Producto producto) throws Exception {
 		
 		log.info("call registrar(producto: " + producto + ")");
 		
@@ -148,7 +147,7 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 
 	// jdbcTemplate.update
 	@Override
-	public void eliminar(Long id) throws Exception {
+	public void deleteById(Long id) throws Exception {
 		log.info("call eliminar(id: " + id + ")");
 		String sql = "DELETE FROM productos WHERE id = ?";
 		jdbcTemplate.update(sql, id);
@@ -156,7 +155,7 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 
 	// jdbcTemplate.update
 	@Override
-	public void actualizar(Long id, String nombreProducto) throws Exception {
+	public void update(Long id, String nombreProducto) throws Exception {
 		log.info("call actualizar(id: " + id + ")");
 		String sql = "UPDATE productos SET  nombre = ?  WHERE id = ?";
 		jdbcTemplate.update(sql, 
