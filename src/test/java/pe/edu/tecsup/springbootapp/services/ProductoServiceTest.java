@@ -1,8 +1,6 @@
 package pe.edu.tecsup.springbootapp.services;
 
-// http://hamcrest.org/JavaHamcrest/tutorial
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
@@ -28,7 +26,7 @@ public class ProductoServiceTest {
 		
 		List<Producto> productos = productoService.listar();
 	
-		assertThat(productos.isEmpty(), is(false));
+		assertEquals(false, productos.isEmpty());
 	
 	}
 	
@@ -40,7 +38,7 @@ public class ProductoServiceTest {
 		log.info("Print by productos");
 		for(Producto producto : productos) log.info(producto.toString());
 		
-		assertThat(productos.isEmpty(), is(false));
+		assertEquals(false, productos.isEmpty());
 		
 	}
 
@@ -63,7 +61,7 @@ public class ProductoServiceTest {
 		productos = productoService.listar();
 		int totalDespues = productos.size();
 		
-		assertThat(totalDespues - totalAntes, is(1));
+		assertEquals(1, totalDespues - totalAntes);
 	}
 
 	@Test
@@ -81,7 +79,7 @@ public class ProductoServiceTest {
 		productos = productoService.listar();
 		int totalDespues = productos.size();
 		
-		assertThat(totalAntes - totalDespues, is(1));
+		assertEquals(1, totalAntes - totalDespues);
 	}
 	
 	
@@ -101,7 +99,7 @@ public class ProductoServiceTest {
 		prod = productoService.buscarPorId(id);
 		
 		// Verificar que el nombre ha sido cambiado 
-		assertThat(prod.getNombre(), is(NOMBRE_A_CAMBIAR));
+		assertEquals(NOMBRE_A_CAMBIAR, prod.getNombre());
 		
 		// Actualizar
 		productoService.actualizar(id, NOMBRE_ORIGINAL);
@@ -110,7 +108,7 @@ public class ProductoServiceTest {
 		prod = productoService.buscarPorId(id);
 		
 		// Verificar que el nombre ha sido cambiado 
-		assertThat(prod.getNombre(), is(NOMBRE_ORIGINAL));
+		assertEquals(NOMBRE_ORIGINAL,prod.getNombre());
 
 
 	}
