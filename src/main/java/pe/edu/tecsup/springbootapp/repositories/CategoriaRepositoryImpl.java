@@ -18,8 +18,8 @@ public class CategoriaRepositoryImpl implements CategoriaRepository {
         Categoria categoria2 = new Categoria();
         categoria2.setNombre("Monitores");
 
-        //return List.of(categoria1, categoria2);
-        return List.of();
+        return List.of(categoria1, categoria2);
+        //return List.of();
     }
 
 }
