@@ -8,7 +8,6 @@ public class Categoria {
 
     // Crear getters and setter methodos
 
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -31,5 +30,14 @@ public class Categoria {
 
     public Integer getOrden() {
         return orden;
+    }
+
+    @Override
+    public String toString() {
+        return "Categoria{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", orden=" + orden +
+                '}';
     }
 }
