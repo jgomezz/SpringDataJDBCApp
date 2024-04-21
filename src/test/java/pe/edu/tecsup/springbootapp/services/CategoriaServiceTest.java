@@ -22,9 +22,13 @@ class CategoriaServiceTest {
     @Test
     void findAll() throws Exception {
 
+        boolean VALUE_EXPECTED = false;
+
         List categorias = categoriaService.findAll();
 
         log.info(categorias.toString());
+
+        assertEquals(VALUE_EXPECTED, categorias.isEmpty());
 
     }
 }
