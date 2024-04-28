@@ -34,18 +34,10 @@ class ProductoRowMapper implements RowMapper<Producto> {
 		producto.setNombre(rs.getString("nombre"));
 		producto.setDescripcion(rs.getString("descripcion"));
 		producto.setPrecio(rs.getDouble("precio"));
-		
-		if (rs.wasNull())
-			producto.setPrecio(null);
-
 		producto.setStock(rs.getInt("stock"));
 		producto.setImagen_nombre(rs.getString("imagen_nombre"));
 		producto.setImagen_tipo(rs.getString("imagen_tipo"));
 		producto.setImagen_tamanio(rs.getLong("imagen_tamanio"));
-		
-		if (rs.wasNull())
-			producto.setImagen_tamanio(null);
-
 		producto.setEstado(rs.getInt("estado"));
 		
 		return producto;
@@ -62,7 +54,7 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 
 	JdbcTemplate jdbcTemplate;
 
-    public ProductoRepositoryImpl(JdbcTemplate jdbcTemplate) {
+	public ProductoRepositoryImpl(JdbcTemplate jdbcTemplate) {
     	this.jdbcTemplate = jdbcTemplate;
 	}
 
@@ -92,5 +84,29 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 		return productos;
 	}
 
+	@Override
+	public List<Producto> findByName(String nombre) throws Exception {
+		return List.of();
+	}
+
+	@Override
+	public Producto findById(Long id) throws Exception {
+		return null;
+	}
+
+	@Override
+	public void save(Producto producto) throws Exception {
+
+	}
+
+	@Override
+	public void update(Long id, String nombreProducto) throws Exception {
+
+	}
+
+	@Override
+	public void deleteById(Long id) throws Exception {
+
+	}
 
 }
