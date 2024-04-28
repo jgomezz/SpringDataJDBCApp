@@ -119,9 +119,33 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 		return null;
 	}
 
+	/**
+	 *
+	 * @param producto
+	 * @throws Exception
+	 */
 	@Override
 	public void save(Producto producto) throws Exception {
 
+		log.info("call save()");
+
+		String sql =
+				"""
+					INSERT INTO  productos (categorias_id, nombre, descripcion, precio, stock, estado, 
+										   imagen_nombre, imagen_tipo, imagen_tamanio) 
+					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+				""";
+
+		jdbcTemplate.update(sql,
+				producto.getCategorias_id(),
+				producto.getNombre(),
+				producto.getDescripcion(),
+				producto.getPrecio(),
+				producto.getStock(),
+				producto.getEstado(),
+				producto.getImagen_nombre(),
+				producto.getImagen_tipo(),
+				producto.getImagen_tamanio());
 	}
 
 	@Override

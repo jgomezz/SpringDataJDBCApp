@@ -55,6 +55,30 @@ public class ProductoServiceTest {
 
 	}
 
+	@Test
+	public void testSave() throws Exception {
+
+		// Leer todos los producvtos
+		List<Producto> productos = productoService.findAll();
+		int totalAntes = productos.size();
+
+		Producto producto = new Producto();
+		producto.setCategorias_id(1L);
+		producto.setNombre("NVIDIA` GPU");
+		producto.setDescripcion("NVIDIA GPU 1080-TI");
+		producto.setPrecio(2000.0);
+		producto.setStock(6);
+		producto.setEstado(1);
+
+		// Crea el producto
+		productoService.save(producto);
+
+		// Leer nuevamente todos los producvtos
+		productos = productoService.findAll();
+		int totalDespues = productos.size();
+
+		assertEquals(1, totalDespues - totalAntes);
+	}
 
 
 
