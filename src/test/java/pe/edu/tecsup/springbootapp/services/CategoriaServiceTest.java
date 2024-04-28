@@ -1,21 +1,18 @@
 package pe.edu.tecsup.springbootapp.services;
 
+import lombok.extern.java.Log;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import pe.edu.tecsup.springbootapp.entities.Categoria;
-import pe.edu.tecsup.springbootapp.repositories.CategoriaRepositoryImpl;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Log
 @SpringBootTest
 class CategoriaServiceTest {
-
-    private static Logger log = LoggerFactory.getLogger(CategoriaServiceTest.class);
 
     @Autowired
     CategoriaService categoriaService;
