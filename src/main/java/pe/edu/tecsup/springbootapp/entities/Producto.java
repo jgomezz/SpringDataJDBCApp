@@ -4,9 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
 @ToString
+@Setter
+@Getter
 public class Producto {
 
     private Long id;
@@ -20,5 +20,4 @@ public class Producto {
     private String imagen_tipo;
     private Long imagen_tamanio;
     private Integer estado;
-
 }
