@@ -6,6 +6,9 @@ import pe.edu.tecsup.springbootapp.repositories.CategoriaRepository;
 
 import java.util.List;
 
+/**
+ *
+ */
 @Service
 public class CategoriaServiceImpl implements CategoriaService{
 
@@ -15,6 +18,11 @@ public class CategoriaServiceImpl implements CategoriaService{
         this.categoriaRepository = categoriaRepository;
     }
 
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
     @Override
     public List<Categoria> findAll() throws Exception {
         return this.categoriaRepository .findAll();
