@@ -1,5 +1,6 @@
 package pe.edu.tecsup.springbootapp.repositories;
 
+import lombok.extern.java.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -30,10 +31,9 @@ class CategoriaRowMapper implements RowMapper<Categoria> {
 /**
  *
  */
+@Log
 @Repository
 public class CategoriaRepositoryImpl implements CategoriaRepository {
-
-    private static Logger log = LoggerFactory.getLogger(CategoriaRepositoryImpl.class);
 
     /* Forma 1 : Inyeccion
     @Autowired
