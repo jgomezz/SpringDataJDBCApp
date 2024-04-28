@@ -1,8 +1,6 @@
 package pe.edu.tecsup.springbootapp.repositories;
 
 import lombok.extern.java.Log;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -114,9 +112,33 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 	}
 
 
+	/**
+	 *
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	@Override
 	public Producto findById(Long id) throws Exception {
-		return null;
+
+		log.info("call findById()");
+
+		String sql =
+				"""
+					SELECT 	p.id, p.categorias_id, c.nombre AS categorias_nombre, p.nombre, p.estado,
+							p.descripcion, p.precio, p.stock, p.imagen_nombre, p.imagen_tipo, p.imagen_tamanio, 
+							p.creado 
+					FROM productos p 
+					INNER JOIN categorias c ON c.id = p.categorias_id 
+					WHERE estado = 1 AND p.id = ? 
+				""";
+
+		Object[] parameter = new Object[] {id};
+		Producto producto
+				= jdbcTemplate.queryForObject(sql, new ProductoRowMapper(), parameter) ;
+		log.info("Producto: " + producto);
+
+		return producto;
 	}
 
 	/**
@@ -148,14 +170,29 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 				producto.getImagen_tamanio());
 	}
 
+	/**
+	 *
+	 * @param id
+	 * @param nombreProducto
+	 * @throws Exception
+	 */
 	@Override
 	public void update(Long id, String nombreProducto) throws Exception {
-
+		log.info("call update()");
+		String sql = "UPDATE productos SET  nombre = ?  WHERE id = ?";
+		jdbcTemplate.update(sql, nombreProducto, id);
 	}
 
+	/**
+	 *
+	 * @param id
+	 * @throws Exception
+	 */
 	@Override
 	public void deleteById(Long id) throws Exception {
-
+		log.info("call deleteById()");
+		String sql = "DELETE FROM productos WHERE id = ?";
+		jdbcTemplate.update(sql, id);
 	}
 
 }

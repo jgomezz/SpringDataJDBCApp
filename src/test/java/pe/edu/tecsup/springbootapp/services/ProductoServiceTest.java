@@ -55,6 +55,10 @@ public class ProductoServiceTest {
 
 	}
 
+	/**
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void testSave() throws Exception {
 
@@ -80,6 +84,64 @@ public class ProductoServiceTest {
 		assertEquals(1, totalDespues - totalAntes);
 	}
 
+	/**
+	 *
+	 * @throws Exception
+	 */
+	@Test
+	public void testDeleteById() throws Exception {
 
+		// Leer todos los producvtos
+		List<Producto> productos = productoService.findAll();
+		int totalAntes = productos.size();
+		if (productos.isEmpty()) {
+			return; // test pass
+		}
+
+		// Obtiene el ultimo producto de la lista
+		Producto ultimoProducto = productos.get(productos.size() - 1);
+
+		// Elimina el producto
+		productoService.deleteById(ultimoProducto.getId());
+
+		// Leer nuevamente todos los producvtos
+		productos = productoService.findAll();
+		int totalDespues = productos.size();
+
+		assertEquals(1, totalAntes - totalDespues);
+	}
+
+	/**
+	 *
+	 * @throws Exception
+	 */
+	@Test
+	public void testUpdate() throws Exception {
+
+		// Actualizar el nombre del producto
+		Long id = 1L; // Relacionado con tus datos de pruebas
+		String NOMBRE_ORIGINAL = "Kingstone" ;
+		String NOMBRE_A_CAMBIAR = "Kingstone Cambiado" ;
+		Producto prod = null;
+
+		// Actualizar
+		productoService.update(id, NOMBRE_ORIGINAL);
+
+		// Buscar el producto
+		prod = productoService.findById(id);
+
+		// Verificar que el nombre ha sido cambiado
+		assertEquals(NOMBRE_ORIGINAL, prod.getNombre());
+
+		// Actualizar
+		productoService.update(id, NOMBRE_A_CAMBIAR);
+
+		// Buscar el producto
+		prod = productoService.findById(id);
+
+		// Verificar que el nombre ha sido cambiado
+		assertEquals(NOMBRE_A_CAMBIAR,prod.getNombre());
+
+	}
 
 }
